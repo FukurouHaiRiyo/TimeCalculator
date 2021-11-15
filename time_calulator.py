@@ -2,10 +2,10 @@ def add_time(time, time1, day=None):
     start_time, meridian = time.split()
     start_hour, start_minute = [int(x) for x in start_time.split(":")]
     duration_hour, duration_minute = [int(x) for x in time1.split(":")]
-    if(day):
+    if day:
         day = day.capitalize()
 
-    if(meridian == "PM"):
+    if meridian == 'PM':
         start_hour += 12
 
     startM += duration_minute
@@ -16,16 +16,22 @@ def add_time(time, time1, day=None):
     start_hour = start_hour % 24
 
     newTime = ''
-    newMeridian = "AM" if startH < 11 else "PM"
-    if(startH > 12):
+    if startH < 11:
+        newMeridian = 'AM' 
+    else: 
+        newMeridian = 'PM'
+    if startH > 12 :
         startH -= 12
-    newTime += (str(startH) if startH != 0 else '12')+":"
+    if startH != 0:
+        newTime += (str(startH)  
+    else:
+         newTime = '12')+':'
     newTime += (str(startM if startM >
                  9 else "0"+str(startM))) + " "
     newTime += newMeridian
     if(day):
-        weekday = ['Sunday', 'Monday', 'Tuesday',
-                            'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        weekday = ['Monday', 'Tuesday',
+                            'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         dayIndex = weekday.index(day)
         nextdayIndex = (dayIndex + nextday_counter) % 7
         newTime += (", " + weekday[nextdayIndex])
