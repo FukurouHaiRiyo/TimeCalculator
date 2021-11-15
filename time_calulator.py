@@ -1,19 +1,19 @@
 def add_time(time, time1, day=None):
     start_time, meridian = time.split()
-    start_hour, start_minute = [int(x) for x in start_time.split(":")]
+    startH, startM = [int(x) for x in start_time.split(":")]
     duration_hour, duration_minute = [int(x) for x in time1.split(":")]
     if day:
         day = day.capitalize()
 
     if meridian == 'PM':
-        start_hour += 12
+        startM += 12
 
     startM += duration_minute
     startH += (startM//60)
     startM = startM % 60
     startH += duration_hour
-    nextday_counter = start_hour // 24
-    start_hour = start_hour % 24
+    nextday_counter = startM // 24
+    startH = startH % 24
 
     newTime = ''
     if startH < 11:
@@ -23,9 +23,9 @@ def add_time(time, time1, day=None):
     if startH > 12 :
         startH -= 12
     if startH != 0:
-        newTime += (str(startH)  
+        newTime += (str(startH))  
     else:
-         newTime = '12')+':'
+         newTime = '12' + ':'
     newTime += (str(startM if startM >
                  9 else "0"+str(startM))) + " "
     newTime += newMeridian
