@@ -8,35 +8,35 @@ def add_time(time, time1, day=None):
     if(meridian == "PM"):
         start_hour += 12
 
-    start_minute += duration_minute
-    start_hour += (start_minute//60)
-    start_minute = start_minute % 60
-    start_hour += duration_hour
+    startM += duration_minute
+    startH += (startM//60)
+    startM = startM % 60
+    startH += duration_hour
     nextday_counter = start_hour // 24
     start_hour = start_hour % 24
 
-    new_time = ''
-    new_meridiem = "AM" if start_hour < 11 else "PM"
-    if(start_hour > 12):
-        start_hour -= 12
-    new_time += (str(start_hour) if start_hour != 0 else '12')+":"
-    new_time += (str(start_minute if start_minute >
-                 9 else "0"+str(start_minute))) + " "
-    new_time += new_meridiem
+    newTime = ''
+    newMeridian = "AM" if startH < 11 else "PM"
+    if(startH > 12):
+        startH -= 12
+    newTime += (str(startH) if startH != 0 else '12')+":"
+    newTime += (str(startM if startM >
+                 9 else "0"+str(startM))) + " "
+    newTime += newMeridian
     if(day):
-        days_of_the_week = ['Sunday', 'Monday', 'Tuesday',
+        weekday = ['Sunday', 'Monday', 'Tuesday',
                             'Wednesday', 'Thursday', 'Friday', 'Saturday']
-        start_day_index = days_of_the_week.index(day)
-        nextday_of_the_week_index = (start_day_index + nextday_counter) % 7
-        new_time += (", " + days_of_the_week[nextday_of_the_week_index])
+        dayIndex = weekday.index(day)
+        nextdayIndex = (dayIndex + nextday_counter) % 7
+        newTime += (", " + weekday[nextdayIndex])
     if(nextday_counter != 0):
-        new_time += " " + (
-            f"({nextday_counter} days later)"
+        newTime += " " + (
+            f'({nextday_counter} days later)'
             if nextday_counter > 1 else
-            "(next day)"
+            '(next day)'
         )
 
-    return new_time
+    return newTime
 
 print(add_time('11:30 AM', '3:10'))
 print(add_time("3:00 AM", "3:10", 'monday'))
