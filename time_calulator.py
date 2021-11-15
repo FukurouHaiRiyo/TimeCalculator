@@ -24,8 +24,8 @@ def add_time(time, time1, day=None):
                  9 else "0"+str(start_minute))) + " "
     new_time += new_meridiem
     if(day):
-        days_of_the_week = ["Sunday", "Monday", "Tuesday",
-                            "Wednesday", "Thursday", "Friday", "Saturday"]
+        days_of_the_week = ['Sunday', 'Monday', 'Tuesday',
+                            'Wednesday', 'Thursday', 'Friday', 'Saturday']
         start_day_index = days_of_the_week.index(day)
         nextday_of_the_week_index = (start_day_index + nextday_counter) % 7
         new_time += (", " + days_of_the_week[nextday_of_the_week_index])
